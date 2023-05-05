@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TimetablePage from "../pages/TimeTablePage";
 import CourseRegistrationPage from "../pages/CourseRegistrationPage";
 import AcademicRecordPage from "../pages/AcademicRecordPage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // ==============================|| MAIN ROUTING ||============================== //
 
 const router = createBrowserRouter([

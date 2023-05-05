@@ -1,14 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  RouterProvider,
+} from "react-router-dom";
+import { CourseProvider } from "./components/CourseContext";
 import router from "./Routes/Mainroutes";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
-
-const App = () => (
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+function App() {
+  return (
+    <CourseProvider>
+      <RouterProvider router={router} />
+    </CourseProvider>
+  );
+}
 
 export default App;

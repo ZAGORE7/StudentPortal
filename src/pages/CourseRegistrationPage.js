@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import CourseContext from "../components/CourseContext";
 import {
   Container,
   Grid,
@@ -103,12 +104,13 @@ const mockCourses = [
 ];
 
 function CourseRegistrationPage() {
-  const [selectedCourses, setSelectedCourses] = useState([]);
+  const { selectedCourses, setSelectedCourses } = useContext(CourseContext);
   const [warningMessage, setWarningMessage] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [clashingCourse, setClashingCourse] = useState(null);
   const [courseExistsDialogOpen, setCourseExistsDialogOpen] = useState(false);
   const [maxCoursesDialogOpen, setMaxCoursesDialogOpen] = useState(false);
+
   const handleCloseDialog = () => {
     setDialogOpen(false);
     setClashingCourse(null);

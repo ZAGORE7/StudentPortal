@@ -1,10 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Tab, Tabs } from "@mui/material";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Container } from "@mui/material";
 import NavTabs from "./Tabs";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleTabClick = (to) => {
     navigate(to);
@@ -13,7 +14,7 @@ const Navbar = () => {
   return (
     <div style={styles.navbarContainer}>
       <Container maxWidth="sm">
-        <NavTabs />
+        <NavTabs currentLocation={location.pathname} />
       </Container>
     </div>
   );
