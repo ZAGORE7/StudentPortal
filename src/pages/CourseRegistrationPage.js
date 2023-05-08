@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import CourseContext from "../components/CourseContext";
+import { CourseContext } from "../components/CourseContext";
 import {
   Container,
   Grid,
@@ -30,9 +30,12 @@ const mockCourses = [
     name: "Logic Design",
     instructor: "John Doe",
     periods: [
-      { day: "Monday", startTime: "08:30", endTime: "10:30" },
-      { day: "Wednesday", startTime: "08:30", endTime: "10:30" },
-      { day: "Friday", startTime: "08:30", endTime: "10:30" },
+      { day: "Monday", startTime: "08:30", endTime: "09:20" },
+      { day: "Monday", startTime: "09:30", endTime: "10:20" },
+      { day: "Wednesday", startTime: "08:30", endTime: "09:20" },
+      { day: "Wednesday", startTime: "09:30", endTime: "10:20" },
+      { day: "Friday", startTime: "08:30", endTime: "09:20" },
+      { day: "Friday", startTime: "09:30", endTime: "10:20" },
     ],
   },
   {
@@ -41,9 +44,12 @@ const mockCourses = [
     name: "Software eng",
     instructor: "Bodur",
     periods: [
-      { day: "Monday", startTime: "11:00", endTime: "13:00" },
-      { day: "Wednesday", startTime: "11:00", endTime: "13:00" },
-      { day: "Friday", startTime: "11:00", endTime: "13:00" },
+      { day: "Monday", startTime: "10:30", endTime: "11:20" },
+      { day: "Monday", startTime: "11:30", endTime: "12:20" },
+      { day: "Tuesday", startTime: "10:30", endTime: "11:20" },
+      { day: "Tuesday", startTime: "11:30", endTime: "12:20" },
+      { day: "Friday", startTime: "10:30", endTime: "11:20" },
+      { day: "Friday", startTime: "11:30", endTime: "12:20" },
     ],
   },
   {
@@ -52,9 +58,12 @@ const mockCourses = [
     name: "Netwrok",
     instructor: "Arifler",
     periods: [
-      { day: "Tuesday", startTime: "14:00", endTime: "16:00" },
-      { day: "Thursday", startTime: "14:00", endTime: "16:00" },
-      { day: "Friday", startTime: "14:00", endTime: "16:00" },
+      { day: "Tuesday", startTime: "14:30", endTime: "15:20" },
+      { day: "Tuesday", startTime: "15:30", endTime: "16:20" },
+      { day: "Thursday", startTime: "14:30", endTime: "15:20" },
+      { day: "Thursday", startTime: "15:30", endTime: "16:20" },
+      { day: "Friday", startTime: "14:30", endTime: "15:20" },
+      { day: "Friday", startTime: "15:30", endTime: "16:20" },
     ],
   },
   {
@@ -63,9 +72,12 @@ const mockCourses = [
     name: "Highend Embeded",
     instructor: "John Doe",
     periods: [
-      { day: "Tuesday", startTime: "16:30", endTime: "18:30" },
-      { day: "Thursday", startTime: "16:30", endTime: "18:30" },
-      { day: "Friday", startTime: "16:30", endTime: "18:30" },
+      { day: "Tuesday", startTime: "16:30", endTime: "17:20" },
+      { day: "Tuesday", startTime: "17:30", endTime: "18:20" },
+      { day: "Thursday", startTime: "16:30", endTime: "17:20" },
+      { day: "Thursday", startTime: "17:30", endTime: "18:20" },
+      { day: "Friday", startTime: "16:30", endTime: "17:20" },
+      { day: "Friday", startTime: "17:30", endTime: "18:20" },
     ],
   },
   {
@@ -74,9 +86,12 @@ const mockCourses = [
     name: "Client/Server Prog",
     instructor: "John Doe",
     periods: [
-      { day: "Tuesday", startTime: "16:30", endTime: "18:30" },
-      { day: "Wednesday", startTime: "8:30", endTime: "10:30" },
-      { day: "Friday", startTime: "12:30", endTime: "14:30" },
+      { day: "Tuesday", startTime: "16:30", endTime: "17:20" },
+      { day: "Tuesday", startTime: "17:30", endTime: "18:20" },
+      { day: "Wednesday", startTime: "08:30", endTime: "09:20" },
+      { day: "Wednesday", startTime: "09:30", endTime: "10:20" },
+      { day: "Friday", startTime: "12:30", endTime: "13:20" },
+      { day: "Friday", startTime: "13:30", endTime: "14:20" },
     ],
   },
   {
@@ -85,22 +100,28 @@ const mockCourses = [
     name: "Computer Networks",
     instructor: "John Doe",
     periods: [
-      { day: "Monday", startTime: "16:30", endTime: "18:30" },
-      { day: "Thursday", startTime: "10:30", endTime: "12:30" },
-      { day: "Friday", startTime: "18:30", endTime: "20:30" },
+      { day: "Monday", startTime: "16:30", endTime: "17:20" },
+      { day: "Monday", startTime: "17:30", endTime: "18:20" },
+      { day: "Thursday", startTime: "10:30", endTime: "11:20" },
+      { day: "Thursday", startTime: "11:30", endTime: "12:20" },
+      { day: "Friday", startTime: "18:30", endTime: "19:20" },
+      { day: "Friday", startTime: "19:30", endTime: "20:20" },
     ],
-  }, // Clashing with CMPE101
+  },
   {
     id: 7,
     code: "SCIE223",
     name: "Patterns of Drug Use",
     instructor: "John Doe",
     periods: [
-      { day: "Tuesday", startTime: "8:30", endTime: "10:30" },
-      { day: "Thursday", startTime: "14:30", endTime: "16:30" },
-      { day: "Friday", startTime: "12:30", endTime: "14:30" },
+      { day: "Tuesday", startTime: "08:30", endTime: "09:20" },
+      { day: "Tuesday", startTime: "09:30", endTime: "10:20" },
+      { day: "Thursday", startTime: "14:30", endTime: "15:20" },
+      { day: "Thursday", startTime: "15:30", endTime: "16:20" },
+      { day: "Friday", startTime: "12:30", endTime: "13:20" },
+      { day: "Friday", startTime: "13:30", endTime: "14:20" },
     ],
-  }, // Clashing with CMPE201
+  },
 ];
 
 function CourseRegistrationPage() {

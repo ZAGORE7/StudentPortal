@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const CourseContext = createContext();
+export const CourseContext = createContext();
 
 export const CourseProvider = ({ children }) => {
   const [selectedCourses, setSelectedCourses] = useState([]);
@@ -11,5 +11,3 @@ export const CourseProvider = ({ children }) => {
     </CourseContext.Provider>
   );
 };
-
-export default CourseContext;
