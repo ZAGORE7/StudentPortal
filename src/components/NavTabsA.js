@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 
-const NavTabs = ({ currentLocation }) => {
+const NavTabsA = ({ currentLocation }) => {
   const linkStyles = (to) => ({
     textDecoration: "none",
     color: "inherit",
@@ -27,14 +27,17 @@ const NavTabs = ({ currentLocation }) => {
       >
         <Link
           to="/student/course-registration"
-          style={linkStyles("/student/course-registration")}
+          style={linkStyles("/advisor/students")}
         >
-          Course Registration
+          Students
         </Link>
-        <Link to="/student/timetable" style={linkStyles("/student/timetable")}>
-          Timetable
+        <Link
+          to="/student/timetable"
+          style={linkStyles("/advisor/classrom-timetable")}
+        >
+          Classroom Timetable
         </Link>
-        <Link to="/student/profile" style={linkStyles("/student/profile")}>
+        <Link to="/student/profile" style={linkStyles("/advisor/profile")}>
           Profile Page
         </Link>
       </Box>
@@ -42,4 +45,4 @@ const NavTabs = ({ currentLocation }) => {
   );
 };
 
-export default NavTabs;
+export default NavTabsA;

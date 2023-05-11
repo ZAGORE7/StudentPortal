@@ -16,13 +16,42 @@ const LoginPage = () => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
-
+  const users = [
+    {
+      email: "berke@gmail.com",
+      password: "berke",
+      role: "student",
+    },
+    {
+      email: "advisor1@example.com",
+      password: "advisor1",
+      role: "advisor",
+    },
+    {
+      email: "student2@example.com",
+      password: "student2",
+      role: "student",
+    },
+    {
+      email: "advisor2@example.com",
+      password: "advisor2",
+      role: "advisor",
+    },
+    // Add more users as needed
+  ];
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add your login logic here
-    if (email === "berke@gmail.com" && password === "berke") {
-      // Redirect to "/student" on successful login
-      navigate("/student");
+
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      if (user.role === "student") {
+        navigate("/student");
+      } else if (user.role === "advisor") {
+        navigate("/advisor");
+      }
     } else {
       setError("Invalid email or password");
       setOpen(true);

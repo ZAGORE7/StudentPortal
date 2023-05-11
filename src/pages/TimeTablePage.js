@@ -11,13 +11,10 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import SelectedCoursesContext from "../components/SelectedCoursesContext";
+
 import { useContext } from "react";
 import { CourseContext } from "../components/CourseContext";
-const tableCellStyles = {
-  borderRight: "1px solid rgba(224, 224, 224, 1)",
-  borderLeft: "1px solid rgba(224, 224, 224, 1)",
-};
+
 const timeColumnStyles = {
   width: "100px",
   borderRight: "1px solid rgba(224, 224, 224, 1)",
