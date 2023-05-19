@@ -6,13 +6,18 @@ import { Route, Routes } from "react-router-dom";
 import TimetablePage from "../pages/TimeTablePage";
 import CourseRegistrationPage from "../pages/CourseRegistrationPage";
 import AcademicRecordPage from "../pages/AcademicRecordPage";
-import AdvisorPage from "../pages/AdvisorStudenPage";
+import AdvisorStudentPage from "../pages/AdvisorStudenPage";
 
 const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="/advisor" element={<AdvisorPage />} />
+      <Route path="/advisor" element={<AdvisorStudentPage />} />
+      <Route path="/advisor/students" element={<AdvisorStudentPage />} />
+      <Route
+        path="/advisor/classroom-timetable"
+        element={<AdvisorStudentPage />}
+      />
       <Route path="/student" element={<StudentPage />} />
       <Route path="/student/timetable" element={<TimetablePage />} />
       <Route path="/student/profile" element={<AcademicRecordPage />} />

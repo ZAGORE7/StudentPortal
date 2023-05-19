@@ -28,7 +28,7 @@ const mockCourses = [
     id: 1,
     code: "CMPE101",
     name: "Logic Design",
-    instructor: "John Doe",
+    instructor: "Mohammed Salamah",
     periods: [
       { day: "Monday", startTime: "08:30", endTime: "09:20" },
       { day: "Monday", startTime: "09:30", endTime: "10:20" },
@@ -41,8 +41,8 @@ const mockCourses = [
   {
     id: 2,
     code: "CMPE312",
-    name: "Software eng",
-    instructor: "Bodur",
+    name: "Software Engineering",
+    instructor: "Felix Babalola",
     periods: [
       { day: "Monday", startTime: "10:30", endTime: "11:20" },
       { day: "Monday", startTime: "11:30", endTime: "12:20" },
@@ -54,9 +54,9 @@ const mockCourses = [
   },
   {
     id: 3,
-    code: "CMPE115",
-    name: "Netwrok",
-    instructor: "Arifler",
+    code: "CMPE344",
+    name: "Computer Networks",
+    instructor: "Doğu Arifler",
     periods: [
       { day: "Tuesday", startTime: "14:30", endTime: "15:20" },
       { day: "Tuesday", startTime: "15:30", endTime: "16:20" },
@@ -69,8 +69,8 @@ const mockCourses = [
   {
     id: 4,
     code: "CMPE301",
-    name: "Highend Embeded",
-    instructor: "John Doe",
+    name: "Highend Embeded Systems",
+    instructor: "Mohammed Salamah",
     periods: [
       { day: "Tuesday", startTime: "16:30", endTime: "17:20" },
       { day: "Tuesday", startTime: "17:30", endTime: "18:20" },
@@ -83,8 +83,8 @@ const mockCourses = [
   {
     id: 5,
     code: "CMPE342",
-    name: "Client/Server Prog",
-    instructor: "John Doe",
+    name: "Client/Server Programming",
+    instructor: "Yıltan Bitirim",
     periods: [
       { day: "Tuesday", startTime: "16:30", endTime: "17:20" },
       { day: "Tuesday", startTime: "17:30", endTime: "18:20" },
@@ -96,9 +96,9 @@ const mockCourses = [
   },
   {
     id: 6,
-    code: "CMPE344",
-    name: "Computer Networks",
-    instructor: "John Doe",
+    code: "CMPE231",
+    name: "Object Oriented Programming",
+    instructor: "Hakan Altınçay",
     periods: [
       { day: "Monday", startTime: "16:30", endTime: "17:20" },
       { day: "Monday", startTime: "17:30", endTime: "18:20" },
@@ -112,7 +112,7 @@ const mockCourses = [
     id: 7,
     code: "SCIE223",
     name: "Patterns of Drug Use",
-    instructor: "John Doe",
+    instructor: "Duygu Uzun",
     periods: [
       { day: "Tuesday", startTime: "08:30", endTime: "09:20" },
       { day: "Tuesday", startTime: "09:30", endTime: "10:20" },

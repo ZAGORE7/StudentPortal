@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
 
 const NavTabs = ({ currentLocation }) => {
   const linkStyles = (to) => ({
@@ -25,6 +26,15 @@ const NavTabs = ({ currentLocation }) => {
           justifyContent: "space-between",
         }}
       >
+        <Link to="/student" style={{ display: "flex", alignItems: "center" }}>
+          <HomeIcon
+            style={{
+              color: "white",
+              fontSize: 40,
+              justifyContent: "flex-start",
+            }}
+          />
+        </Link>
         <Link
           to="/student/course-registration"
           style={linkStyles("/student/course-registration")}
@@ -35,7 +45,7 @@ const NavTabs = ({ currentLocation }) => {
           Timetable
         </Link>
         <Link to="/student/profile" style={linkStyles("/student/profile")}>
-          Profile Page
+          Academic Record Page
         </Link>
       </Box>
     </Box>

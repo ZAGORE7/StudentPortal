@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Container } from "@mui/material";
-import NavTabsA from "./Tabs";
+import NavTabsA from "./NavTabsA";
 
 const NavBarA = () => {
   const navigate = useNavigate();

@@ -43,25 +43,17 @@ const AcademicRecordPage = () => {
       <Navbar />
       <Container maxWidth="md">
         <Typography variant="h4" gutterBottom>
-          Profile
+          Academic Record Sheet
         </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Box component={Paper} p={2}>
-              <Typography variant="h6">Personal Information</Typography>
-              <Typography>Name: {student.name}</Typography>
-              <Typography>Advisor: {student.advisor}</Typography>
-              <Typography>Advisor Email: {student.advisorEmail}</Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={6}>
+        <Grid justifyContent={"center"}>
+          <Grid>
             <TableContainer component={Paper}>
               <Table aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell>Course Code</TableCell>
                     <TableCell>Course Name</TableCell>
-                    <TableCell>Mark</TableCell>
+                    <TableCell>Grade</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

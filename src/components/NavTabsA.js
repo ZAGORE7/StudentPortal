@@ -25,19 +25,16 @@ const NavTabsA = ({ currentLocation }) => {
           justifyContent: "space-between",
         }}
       >
-        <Link
-          to="/student/course-registration"
-          style={linkStyles("/advisor/students")}
-        >
+        <Link to="/advisor/students" style={linkStyles("/advisor/students")}>
           Students
         </Link>
         <Link
-          to="/student/timetable"
+          to="/advisor/classroom-timetable"
           style={linkStyles("/advisor/classrom-timetable")}
         >
           Classroom Timetable
         </Link>
-        <Link to="/student/profile" style={linkStyles("/advisor/profile")}>
+        <Link to="/advisor/profile" style={linkStyles("/advisor/profile")}>
           Profile Page
         </Link>
       </Box>
