@@ -7,6 +7,7 @@ import TimetablePage from "../pages/TimeTablePage";
 import CourseRegistrationPage from "../pages/CourseRegistrationPage";
 import AcademicRecordPage from "../pages/AcademicRecordPage";
 import AdvisorStudentPage from "../pages/AdvisorStudenPage";
+import AdvisorStudentView from "../pages/AdvisorStudentView";
 
 const MainRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const MainRoutes = () => {
         path="/advisor/classroom-timetable"
         element={<AdvisorStudentPage />}
       />
+      <Route path="/student/:id" element={<AdvisorStudentView />} />
       <Route path="/student" element={<StudentPage />} />
       <Route path="/student/timetable" element={<TimetablePage />} />
       <Route path="/student/profile" element={<AcademicRecordPage />} />
