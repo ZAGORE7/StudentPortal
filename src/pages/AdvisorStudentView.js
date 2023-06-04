@@ -4,6 +4,27 @@ import AcademicRecord from "../components/AcademicRecord";
 import Timetable from "../components/TimeTableComp";
 import ConfirmCourses from "./ConfirmCourses";
 import { Box } from "@mui/material";
+import StudentCourseTable from "../components/StudentCourseTable";
+const courses = [
+  {
+    id: 1,
+    code: "CMPE101",
+    name: "Logic Design",
+    instructor: "Mohammed Salamah",
+    classroom: "Classroom A",
+    status: "Confirmed",
+    periods: [
+      { day: "Monday", startTime: "08:30", endTime: "09:20" },
+      // ... other periods
+    ],
+  },
+  // ... other courses
+];
+
+// Filter the courses to only include confirmed ones
+const confirmedCourses = courses.filter(
+  (course) => course.status === "Confirmed"
+);
 
 const studentData = [
   {
@@ -37,7 +58,10 @@ const AdvisorStudentView = ({ studentData }) => {
         <AcademicRecord studentData={studentData} />
       </Box>
       <Box>
-        <Timetable studentData={studentData} />
+        <Timetable studentData={confirmedCourses} />
+      </Box>
+      <Box>
+        <StudentCourseTable />
       </Box>
     </div>
   );

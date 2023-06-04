@@ -41,16 +41,14 @@ const timePeriods = [
 
 const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-const Timetable = () => {
-  const { selectedCourses } = useContext(CourseContext);
-
+const Timetable = ({ studentData }) => {
   const hasLesson = (day, period) => {
     const [startTime, endTime] = period.split("-").map((time) => {
       const [hour, minute] = time.split(":");
       return parseInt(hour) * 60 + parseInt(minute);
     });
 
-    return selectedCourses.some((course) => {
+    return studentData.some((course) => {
       return course.periods.some((p) => {
         if (p.day !== day) {
           return false;
@@ -69,7 +67,7 @@ const Timetable = () => {
   };
 
   const cellBackgroundColor = (day, period) => {
-    const lessons = selectedCourses.filter((course) =>
+    const lessons = studentData.filter((course) =>
       course.periods.some(
         (p) => p.day === day && p.startTime === period.split("-")[0]
       )
@@ -120,7 +118,7 @@ const Timetable = () => {
                     };
                     return (
                       <TableCell key={dayIndex} style={cellStyles}>
-                        {selectedCourses.map((course) => {
+                        {studentData.map((course) => {
                           const coursePeriod = course.periods.find(
                             (p) =>
                               p.day === day &&

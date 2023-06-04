@@ -34,9 +34,6 @@ const NavTabsA = ({ currentLocation }) => {
         >
           Classroom Timetable
         </Link>
-        <Link to="/advisor/profile" style={linkStyles("/advisor/profile")}>
-          Profile Page
-        </Link>
       </Box>
     </Box>
   );

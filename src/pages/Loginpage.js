@@ -8,8 +8,11 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
+import { useContext } from "react";
+import { UserContext } from "../components/UseContext";
 
 const LoginPage = () => {
+  const { setCurrentUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,6 +24,7 @@ const LoginPage = () => {
       email: "berke@gmail.com",
       password: "berke",
       role: "student",
+      id: "1",
     },
     {
       email: "advisor1@example.com",
@@ -31,11 +35,13 @@ const LoginPage = () => {
       email: "student2@example.com",
       password: "student2",
       role: "student",
+      id: "2",
     },
     {
       email: "advisor2@example.com",
       password: "advisor2",
       role: "advisor",
+      id: "101",
     },
     // Add more users as needed
   ];
@@ -47,6 +53,7 @@ const LoginPage = () => {
     );
 
     if (user) {
+      setCurrentUser(user);
       if (user.role === "student") {
         navigate("/student");
       } else if (user.role === "advisor") {

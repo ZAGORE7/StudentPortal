@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import {
   Table,
   TableBody,
@@ -15,7 +15,9 @@ import {
 import advisorData from "../components/advisorData";
 import NavBarA from "../components/NavbarA";
 import { styled } from "@mui/system";
-import SearchBar from "../components/SearchBar";
+import { UserContext } from "../components/UseContext";
+import { useNavigate } from "react-router-dom";
+
 const studentData = [
   {
     studentId: 1,
@@ -44,6 +46,13 @@ const studentData = [
 
 const AdvisorStudentsPage = () => {
   const advisorId = 1; // Replace with the correct advisorId
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleStudentClick = (studentId) => {
+    setCurrentUser({ ...currentUser, id: studentId });
+    navigate(`/student/${studentId}`);
+  };
   const advisor = advisorData.find(
     (advisor) => advisor.advisorId === advisorId
   );
@@ -115,7 +124,13 @@ const AdvisorStudentsPage = () => {
                   <TableRow key={student.studentId}>
                     <TableCell>{student.studentId}</TableCell>
                     <TableCell>
-                      <Link href={`/student/${student.studentId}`}>
+                      <Link
+                        href={`/student/${student.studentId}`}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          handleStudentClick(student.studentId);
+                        }}
+                      >
                         {student.studentName} {student.studentSurname}
                       </Link>
                     </TableCell>

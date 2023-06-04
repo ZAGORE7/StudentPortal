@@ -3,14 +3,17 @@ import "./App.css";
 import MainRoutes from "./Routes/Mainroutes";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CourseProvider } from "./components/CourseContext";
+import { UserProvider } from "./components/UseContext";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <CourseProvider>
-          <MainRoutes />
-        </CourseProvider>
+        <UserProvider>
+          <CourseProvider>
+            <MainRoutes />
+          </CourseProvider>
+        </UserProvider>
       </div>
     </Router>
   );
