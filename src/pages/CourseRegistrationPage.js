@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CourseContext } from "../components/CourseContext";
+import {Delete, Add} from '@mui/icons-material';
 import {
   Container,
   Grid,
@@ -184,6 +185,33 @@ function CourseRegistrationPage() {
     );
   };
 
+  // Save courses to local storage
+  useEffect(() => {
+    if (selectedCourses.length > 0) {
+      localStorage.setItem("selectedCourses", JSON.stringify(selectedCourses)
+      );
+    }
+  }, [selectedCourses]);
+
+  // Remove removed courses from local storage
+  useEffect(() => {
+    const courses = JSON.parse(localStorage.getItem("selectedCourses"));
+    if (courses) {
+      const newCourses = courses.filter((course) =>
+        selectedCourses.some((selectedCourse) => selectedCourse.id === course.id)
+      );
+      localStorage.setItem("selectedCourses", JSON.stringify(newCourses));
+    }
+  }, [selectedCourses]);
+  
+  // Load courses from local storage
+  useEffect(() => {
+    const courses = JSON.parse(localStorage.getItem("selectedCourses"));
+    if (courses) {
+      setSelectedCourses(courses);
+    }
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -222,13 +250,25 @@ function CourseRegistrationPage() {
                   ))}
                 </CardContent>
                 <CardActions>
-                  <Button
-                    size="small"
-                    color="primary"
-                    onClick={() => addCourse(course)}
-                  >
-                    Add
-                  </Button>
+                  {isCourseAlreadySelected(course) ? ( 
+                    <Button
+                      startIcon={<Delete />}
+                      color="error"
+                      variant="outlined"
+                      onClick={() => removeCourse(course.id)}
+                    >
+                      Remove
+                    </Button>
+                  ) : (
+                    <Button
+                      startIcon={<Add />}
+                      color="primary"
+                      variant="outlined"
+                      onClick={() => addCourse(course)}
+                    >
+                      Add
+                    </Button>
+                  )}
                 </CardActions>
               </Card>
             </Grid>
@@ -336,7 +376,9 @@ function CourseRegistrationPage() {
                   <TableCell>
                     <Button
                       size="small"
-                      color="secondary"
+                      startIcon={<Delete />}
+                      color="error"
+                      variant="outlined"
                       onClick={() => removeCourse(course.id)}
                     >
                       Remove
