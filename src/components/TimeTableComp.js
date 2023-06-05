@@ -41,6 +41,9 @@ const timePeriods = [
 
 const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
+// Load student data from the local storage
+const courses = JSON.parse(localStorage.getItem("selectedCourses")) || [];
+
 const Timetable = ({ studentData }) => {
   const hasLesson = (day, period) => {
     const [startTime, endTime] = period.split("-").map((time) => {
@@ -48,10 +51,10 @@ const Timetable = ({ studentData }) => {
       return parseInt(hour) * 60 + parseInt(minute);
     });
 
-    return studentData.some((course) => {
+    return courses.some((course) => {
       return course.periods.some((p) => {
         if (p.day !== day) {
-          return false;
+          return 0;
         }
 
         const pStartTime =
@@ -67,7 +70,7 @@ const Timetable = ({ studentData }) => {
   };
 
   const cellBackgroundColor = (day, period) => {
-    const lessons = studentData.filter((course) =>
+    const lessons = courses.filter((course) =>
       course.periods.some(
         (p) => p.day === day && p.startTime === period.split("-")[0]
       )
@@ -118,7 +121,7 @@ const Timetable = ({ studentData }) => {
                     };
                     return (
                       <TableCell key={dayIndex} style={cellStyles}>
-                        {studentData.map((course) => {
+                        {courses.map((course) => {
                           const coursePeriod = course.periods.find(
                             (p) =>
                               p.day === day &&

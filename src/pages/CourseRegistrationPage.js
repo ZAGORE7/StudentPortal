@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CourseContext } from "../components/CourseContext";
 import {Delete, Add} from '@mui/icons-material';
 import {
@@ -184,6 +184,33 @@ function CourseRegistrationPage() {
       selectedCourses.filter((course) => course.id !== courseId)
     );
   };
+
+  // Save courses to local storage
+  useEffect(() => {
+    if (selectedCourses.length > 0) {
+      localStorage.setItem("selectedCourses", JSON.stringify(selectedCourses)
+      );
+    }
+  }, [selectedCourses]);
+
+  // Remove removed courses from local storage
+  useEffect(() => {
+    const courses = JSON.parse(localStorage.getItem("selectedCourses"));
+    if (courses) {
+      const newCourses = courses.filter((course) =>
+        selectedCourses.some((selectedCourse) => selectedCourse.id === course.id)
+      );
+      localStorage.setItem("selectedCourses", JSON.stringify(newCourses));
+    }
+  }, [selectedCourses]);
+  
+  // Load courses from local storage
+  useEffect(() => {
+    const courses = JSON.parse(localStorage.getItem("selectedCourses"));
+    if (courses) {
+      setSelectedCourses(courses);
+    }
+  }, []);
 
   return (
     <div>
