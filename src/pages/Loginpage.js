@@ -21,6 +21,7 @@ const LoginPage = () => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
+
   
   async function loginevent(emal, passwrd) {
     const response = await fetch(LoginApi, {
@@ -35,6 +36,7 @@ const LoginPage = () => {
     return data
   }
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -46,6 +48,8 @@ const LoginPage = () => {
         navigate("/student");
       } else if (user.role === "advisor") {
         navigate("/advisor");
+      } else if (user.role === "admin") {
+        navigate("/admin/courses");
       }
       // save user to local storage
       localStorage.setItem("user", JSON.stringify(user.id));

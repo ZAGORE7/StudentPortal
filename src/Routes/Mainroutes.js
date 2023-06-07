@@ -9,7 +9,8 @@ import AcademicRecordPage from "../pages/AcademicRecordPage";
 import AdvisorStudentPage from "../pages/AdvisorStudenPage";
 import AdvisorStudentView from "../pages/AdvisorStudentView";
 import ClassroomTimetable from "../pages/ClassroomTimeTable";
-
+import AssignAdvisor from "../pages/AssignAdvisor";
+import CoursesPage from "../pages/CoursePage";
 const MainRoutes = () => {
   return (
     <Routes>
@@ -28,6 +29,8 @@ const MainRoutes = () => {
         path="/student/course-registration"
         element={<CourseRegistrationPage />}
       />
+      <Route path="/admin/assign" element={<AssignAdvisor />} />
+      <Route path="/admin/courses" element={<CoursesPage />} />
     </Routes>
   );
 };
