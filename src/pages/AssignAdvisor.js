@@ -11,8 +11,8 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import NavBarAdmin from "../components/NavTabsAdmin";
-import NavBarA from "../components/NavbarA";
+
+import NavgationBar from "../components/NavigationBar";
 
 const studentData = [
   { id: 1, name: "John Doe", advisor: "Advisor A" },
@@ -36,7 +36,7 @@ const AssignAdvisor = () => {
 
   return (
     <div>
-      <NavBarAdmin />
+      <NavgationBar />
       <Container maxWidth="md">
         <Typography variant="h4" gutterBottom>
           Assign Advisor

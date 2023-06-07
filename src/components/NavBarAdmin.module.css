@@ -1,0 +1,8 @@
+/* NavBarAdmin.module.css */
+.navbarContainer {
+  background-color: #2196f3;
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}

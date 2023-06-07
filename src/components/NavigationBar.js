@@ -1,10 +1,9 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Container } from "@mui/material";
-import NavTabsA from "./NavTabsA";
-import NavTabsAdmin from "./NavTabsAdmin";
+import NavigationBarTabs from "./NavigationBarTabs";
 
-const NavBarAdmin = () => {
+const NavgationBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,7 +14,7 @@ const NavBarAdmin = () => {
   return (
     <div style={styles.navbarContainer}>
       <Container maxWidth="sm">
-        <NavTabsAdmin currentLocation={location.pathname} />
+        <NavigationBarTabs currentLocation={location.pathname} />
       </Container>
     </div>
   );
@@ -38,4 +37,4 @@ const styles = {
   },
 };
 
-export default NavBarAdmin;
+export default NavgationBar;

@@ -1,6 +1,5 @@
 import LoginPage from "../pages/Loginpage";
 import React from "react";
-import ReactDOM from "react-dom/client";
 import StudentPage from "../pages/StudentPage";
 import { Route, Routes } from "react-router-dom";
 import TimetablePage from "../pages/TimeTablePage";

@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 
-const NavTabsAdmin = ({ currentLocation }) => {
+const NavigationBarTabs = ({ currentLocation }) => {
   const linkStyles = (to) => ({
     textDecoration: "none",
     color: "inherit",
@@ -36,4 +36,4 @@ const NavTabsAdmin = ({ currentLocation }) => {
   );
 };
 
-export default NavTabsAdmin;
+export default NavigationBarTabs;
