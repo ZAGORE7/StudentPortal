@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserContext } from "./UseContext";
+import React from "react";
 import {
   Container,
   Typography,
@@ -15,10 +14,13 @@ import {
 } from "@mui/material";
 
 const AcademicRecord = () => {
-  const { currentUser } = useContext(UserContext);
-  const [student, setStudent] = useState(null);
-
-  const studentData = [
+  const markBackgroundColor = (mark) => {
+    if (mark === "F" || mark === "D" || mark === "D-") {
+      return "red";
+    }
+    return "transparent";
+  };
+  const student = [
     {
       name: "John Doe",
       advisor: "Dr. Smith",
@@ -56,25 +58,6 @@ const AcademicRecord = () => {
       ],
     },
   ];
-
-  useEffect(() => {
-    if (currentUser) {
-      const studentInfo = studentData[currentUser.id - 1]; // Assuming the id corresponds to the array index (id 1 -> index 0, id 2 -> index 1)
-      setStudent(studentInfo);
-    }
-  }, [currentUser]);
-
-  const markBackgroundColor = (mark) => {
-    if (mark === "F" || mark === "D" || mark === "D-") {
-      return "red";
-    }
-    return "transparent";
-  };
-
-  // Ensure that the student data has been fetched before trying to access it
-  if (!student) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>

@@ -11,7 +11,7 @@ import {
 import { useContext } from "react";
 import { UserContext } from "../components/UseContext";
 
-const LoginApi = "http://localhost:8080/login"
+const LoginApi = "http://localhost:8080/login";
 
 const LoginPage = () => {
   const { setCurrentUser } = useContext(UserContext);
@@ -22,26 +22,24 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  
   async function loginevent(emal, passwrd) {
     const response = await fetch(LoginApi, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({email: emal, password: passwrd})
-    })
-    const data = await response.json()
-    console.log(data.role)
-    return data
+      body: JSON.stringify({ email: emal, password: passwrd }),
+    });
+    const data = await response.json();
+    console.log(data.role);
+    return data;
   }
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const user = await loginevent(email, password)
-    
+    const user = await loginevent(email, password);
+
     if (user) {
       setCurrentUser(user);
       if (user.role === "student") {
@@ -49,7 +47,7 @@ const LoginPage = () => {
       } else if (user.role === "advisor") {
         navigate("/advisor");
       } else if (user.role === "admin") {
-        navigate("/admin/courses");
+        navigate("/admin/assign");
       }
       // save user to local storage
       localStorage.setItem("user", JSON.stringify(user.id));
@@ -58,7 +56,7 @@ const LoginPage = () => {
       setOpen(true);
     }
   };
-  
+
   const handleClose = () => {
     setOpen(false);
   };

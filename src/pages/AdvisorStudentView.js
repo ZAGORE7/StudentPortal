@@ -26,6 +26,45 @@ const courses = [
 const confirmedCourses = courses.filter(
   (course) => course.status === "Confirmed"
 );
+const student = [
+  {
+    name: "John Doe",
+    advisor: "Dr. Smith",
+    advisorEmail: "dr.smith@example.com",
+
+    courses: [
+      { code: "CMPE101", name: "Intro to Computer Engineering", mark: "A" },
+      { code: "CMPE102", name: "Data Structures", mark: "B+" },
+      { code: "CMPE103", name: "Algorithms", mark: "A-" },
+      { code: "CMPE104", name: "Computer Networks", mark: "B" },
+      { code: "CMPE105", name: "Operating Systems", mark: "C+" },
+      { code: "CMPE106", name: "Software Engineering", mark: "D" }, // Failed course
+      { code: "CMPE107", name: "Artificial Intelligence", mark: "A+" },
+      { code: "CMPE108", name: "Machine Learning", mark: "B-" },
+      { code: "CMPE109", name: "Embedded Systems", mark: "F" }, // Failed course
+      { code: "CMPE110", name: "Computer Graphics", mark: "D-" }, // Failed course
+    ],
+  },
+  {
+    name: "Berke Çelik",
+    studentId: 2,
+    advisor: "Dr. Selo",
+    advisorEmail: "dr.selo@example.com",
+
+    courses: [
+      { code: "CMPE101", name: "Intro to Computer Engineering", mark: "C" },
+      { code: "CMPE102", name: "Data Structures", mark: "C+" },
+      { code: "CMPE103", name: "Algorithms", mark: "B-" },
+      { code: "CMPE104", name: "Computer Networks", mark: "B" },
+      { code: "CMPE105", name: "Operating Systems", mark: "D+" },
+      { code: "CMPE106", name: "Software Engineering", mark: "A" }, // Failed course
+      { code: "CMPE107", name: "Artificial Intelligence", mark: "B+" },
+      { code: "CMPE108", name: "Machine Learning", mark: "F" },
+      { code: "CMPE109", name: "Embedded Systems", mark: "F" }, // Failed course
+      { code: "CMPE110", name: "Computer Graphics", mark: "B-" }, // Failed course
+    ],
+  },
+];
 
 const studentData = [
   {
@@ -57,7 +96,7 @@ const AdvisorStudentView = ({ studentData }) => {
     <div>
       <NavBarA />
       <Box sx={{ m: 10 }}>
-        <AcademicRecord studentData={studentData} />
+        <AcademicRecord student={student} />
       </Box>
       <Box>
         <Timetable studentData={confirmedCourses} />

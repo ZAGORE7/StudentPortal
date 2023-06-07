@@ -30,7 +30,7 @@
       "department": "Computer Engineering",
       "email": "advisor2@example.com",
       "password": "advisor2",
-      "role": "advisor"
+      "role": "admin"
     }
   ],
   "courses": [
