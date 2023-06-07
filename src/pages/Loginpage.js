@@ -48,14 +48,13 @@ const LoginPage = () => {
         navigate("/advisor");
       }
       // save user to local storage
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user.id));
     } else {
       setError("Invalid email or password");
       setOpen(true);
     }
   };
   
-
   const handleClose = () => {
     setOpen(false);
   };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Container,
@@ -14,6 +14,9 @@ import {
 
 import { useContext } from "react";
 import { CourseContext } from "../components/CourseContext";
+
+const apiKey="u8n2KZv8tMdsZTFH"
+const stdid = JSON.parse(localStorage.getItem("user"));
 
 const timeColumnStyles = {
   width: "100px",
@@ -41,10 +44,43 @@ const timePeriods = [
 
 const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-// Load student data from the local storage
-const courses = JSON.parse(localStorage.getItem("selectedCourses")) || [];
-
 const Timetable = ({ studentData }) => {
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [courses, setCourses] = useState({})
+
+  //get courses from api /enrolled/:api/:uid
+  const getCourses = async (stdid) => {
+    try {
+      const response = await fetch(`http://localhost:8080/enrolled/${apiKey}/${stdid}`)
+      const data = await response.json()
+      setCourses(data)
+    } catch (e) {
+      setError(true)
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getCourses(stdid)
+  }, [])
+
+  if (loading) {
+    return (
+      <div>
+        Loading...
+      </div>
+    )
+  }
+  
+  if (error) {
+    return (
+      <div>
+        Error...
+      </div>
+    )
+  }
+  
   const hasLesson = (day, period) => {
     const [startTime, endTime] = period.split("-").map((time) => {
       const [hour, minute] = time.split(":");
@@ -84,6 +120,7 @@ const Timetable = ({ studentData }) => {
       return "red";
     }
   };
+
 
   return (
     <div>
