@@ -43,6 +43,13 @@ const LoginPage = () => {
       role: "advisor",
       id: "101",
     },
+    {
+      email: "admin@gmail.com",
+      password: "admin",
+      role: "admin",
+      id: "42",
+    },
+
     // Add more users as needed
   ];
   const handleSubmit = (event) => {
@@ -58,6 +65,8 @@ const LoginPage = () => {
         navigate("/student");
       } else if (user.role === "advisor") {
         navigate("/advisor");
+      } else if (user.role === "admin") {
+        navigate("/admin/courses");
       }
     } else {
       setError("Invalid email or password");
