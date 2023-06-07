@@ -1,10 +1,14 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { Grid, Typography, Box, Paper } from "@mui/material";
+import { UserContext } from "../components/UseContext";
+
+// get user from local storage
+const user = JSON.parse(localStorage.getItem("user"));
 
 const StudentPage = () => {
   const student = {
-    name: "John Doe",
+    name: user.name,
     advisor: "Dr. Smith",
     advisorEmail: "dr.smith@example.com",
   };

@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "ccdf5896-0084-4d47-89ca-7327a254e585",
+      "name": "Berke Çelik",
+      "role": "student",
+      "email": "berke@gmail.com",
+      "password": "berke"
+    },
+    {
+      "id": "ccdf5876-0084-4d47-89ca-7327a254e585",
+      "email": "advisor1@example.com",
+      "name": "Advisor1",
+      "password": "advisor1",
+      "role": "advisor"
+    },
+    {
+      "id": "ccdf5876-0084-4d47-89ca-7327a254e585",
+      "name": "Advisor2",
+      "email": "student2@example.com",
+      "password": "student2",
+      "role": "student"
+    },
+    {
+      "id": "ccdf5786-0084-4d47-89ca-7327a254e585",
+      "name": "Advisor3",
+      "email": "advisor2@example.com",
+      "password": "advisor2",
+      "role": "advisor"
+    }
+  ]
+}
