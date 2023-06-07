@@ -1,0 +1,336 @@
+{
+  "users": [
+    {
+      "id": "ccdf5896-0084-4d47-89ca-7327a254e585",
+      "name": "Berke Çelik",
+      "department": "Computer Engineering",
+      "role": "student",
+      "email": "berke@gmail.com",
+      "password": "berke"
+    },
+    {
+      "id": "ccdf5876-0084-4d47-89ca-7327a254e585",
+      "email": "advisor1@example.com",
+      "name": "Advisor1",
+      "department": "Computer Engineering",
+      "password": "advisor1",
+      "role": "advisor"
+    },
+    {
+      "id": "ccdf5876-0084-4d47-89ca-7327a254e585",
+      "name": "Ali Devecioglu",
+      "department": "Computer Engineering",
+      "email": "ali@gmail.com",
+      "password": "ali",
+      "role": "student"
+    },
+    {
+      "id": "ccdf5786-0084-4d47-89ca-7327a254e585",
+      "name": "Advisor3",
+      "department": "Computer Engineering",
+      "email": "advisor2@example.com",
+      "password": "advisor2",
+      "role": "advisor"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "code": "CMPE101",
+      "name": "Logic Design",
+      "instructor": "Mohammed Salamah",
+      "periods": [
+        {
+          "day": "Monday",
+          "startTime": "08:30",
+          "endTime": "09:20"
+        },
+        {
+          "day": "Monday",
+          "startTime": "09:30",
+          "endTime": "10:20"
+        },
+        {
+          "day": "Wednesday",
+          "startTime": "08:30",
+          "endTime": "09:20"
+        },
+        {
+          "day": "Wednesday",
+          "startTime": "09:30",
+          "endTime": "10:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "08:30",
+          "endTime": "09:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "09:30",
+          "endTime": "10:20"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "code": "CMPE312",
+      "name": "Software Engineering",
+      "instructor": "Felix Babalola",
+      "periods": [
+        {
+          "day": "Monday",
+          "startTime": "10:30",
+          "endTime": "11:20"
+        },
+        {
+          "day": "Monday",
+          "startTime": "11:30",
+          "endTime": "12:20"
+        },
+        {
+          "day": "Tuesday",
+          "startTime": "10:30",
+          "endTime": "11:20"
+        },
+        {
+          "day": "Tuesday",
+          "startTime": "11:30",
+          "endTime": "12:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "10:30",
+          "endTime": "11:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "11:30",
+          "endTime": "12:20"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "code": "CMPE344",
+      "name": "Computer Networks",
+      "instructor": "Doğu Arifler",
+      "periods": [
+        {
+          "day": "Tuesday",
+          "startTime": "14:30",
+          "endTime": "15:20"
+        },
+        {
+          "day": "Tuesday",
+          "startTime": "15:30",
+          "endTime": "16:20"
+        },
+        {
+          "day": "Thursday",
+          "startTime": "14:30",
+          "endTime": "15:20"
+        },
+        {
+          "day": "Thursday",
+          "startTime": "15:30",
+          "endTime": "16:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "14:30",
+          "endTime": "15:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "15:30",
+          "endTime": "16:20"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "code": "CMPE301",
+      "name": "Highend Embeded Systems",
+      "instructor": "Mohammed Salamah",
+      "periods": [
+        {
+          "day": "Tuesday",
+          "startTime": "16:30",
+          "endTime": "17:20"
+        },
+        {
+          "day": "Tuesday",
+          "startTime": "17:30",
+          "endTime": "18:20"
+        },
+        {
+          "day": "Thursday",
+          "startTime": "16:30",
+          "endTime": "17:20"
+        },
+        {
+          "day": "Thursday",
+          "startTime": "17:30",
+          "endTime": "18:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "16:30",
+          "endTime": "17:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "17:30",
+          "endTime": "18:20"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "code": "CMPE342",
+      "name": "Client/Server Programming",
+      "instructor": "Yıltan Bitirim",
+      "periods": [
+        {
+          "day": "Tuesday",
+          "startTime": "16:30",
+          "endTime": "17:20"
+        },
+        {
+          "day": "Tuesday",
+          "startTime": "17:30",
+          "endTime": "18:20"
+        },
+        {
+          "day": "Wednesday",
+          "startTime": "08:30",
+          "endTime": "09:20"
+        },
+        {
+          "day": "Wednesday",
+          "startTime": "09:30",
+          "endTime": "10:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "12:30",
+          "endTime": "13:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "13:30",
+          "endTime": "14:20"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "code": "CMPE231",
+      "name": "Object Oriented Programming",
+      "instructor": "Hakan Altınçay",
+      "periods": [
+        {
+          "day": "Monday",
+          "startTime": "16:30",
+          "endTime": "17:20"
+        },
+        {
+          "day": "Monday",
+          "startTime": "17:30",
+          "endTime": "18:20"
+        },
+        {
+          "day": "Thursday",
+          "startTime": "10:30",
+          "endTime": "11:20"
+        },
+        {
+          "day": "Thursday",
+          "startTime": "11:30",
+          "endTime": "12:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "18:30",
+          "endTime": "19:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "19:30",
+          "endTime": "20:20"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "code": "SCIE223",
+      "name": "Patterns of Drug Use",
+      "instructor": "Duygu Uzun",
+      "periods": [
+        {
+          "day": "Tuesday",
+          "startTime": "08:30",
+          "endTime": "09:20"
+        },
+        {
+          "day": "Tuesday",
+          "startTime": "09:30",
+          "endTime": "10:20"
+        },
+        {
+          "day": "Thursday",
+          "startTime": "14:30",
+          "endTime": "15:20"
+        },
+        {
+          "day": "Thursday",
+          "startTime": "15:30",
+          "endTime": "16:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "12:30",
+          "endTime": "13:20"
+        },
+        {
+          "day": "Friday",
+          "startTime": "13:30",
+          "endTime": "14:20"
+        }
+      ]
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "ce6c7fd4-7920-46b0-969c-6977dcde6069",
+      "userId": "ccdf5896-0084-4d47-89ca-7327a254e585",
+      "courseId": "1",
+      "status": "confirmed"
+    },
+    {
+      "id": "a5c90990-8584-46c7-be85-7f98946730ce",
+      "userId": "ccdf5896-0084-4d47-89ca-7327a254e585",
+      "courseId": "3",
+      "status": "pending"
+    },
+    {
+      "id": "ce5230aa-8712-4f37-862d-f8a86854d83d",
+      "userId": "ccdf5896-0084-4d47-89ca-7327a254e585",
+      "courseId": "5",
+      "status": "pending"
+    },
+    {
+      "id": "7f3cb25e-b596-49dc-bbe5-13e1e88e925e",
+      "userId": "ce6c7fd4-7920-46b0-969c-6977dcde6069",
+      "courseId": "2",
+      "status": "pending"
+    },
+    {
+      "id": "2c57581c-c44f-488e-9f86-28f665b6f8a0",
+      "userId": "ce6c7fd4-7920-46b0-969c-6977dcde6069",
+      "courseId": "4",
+      "status": "pending"
+    }
+  ]
+}
