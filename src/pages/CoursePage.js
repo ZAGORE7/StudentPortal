@@ -18,6 +18,8 @@ import {
 
 import NavigationBar from "../components/NavigationBar";
 
+const apiKey="u8n2KZv8tMdsZTFH"
+
 const mockCourses = [
   // Existing course data
 ];
@@ -89,7 +91,7 @@ const CoursesPage = () => {
     instructor: "",
     periods: [],
   });
-
+  
   const generateId = () => {
     // Generate a unique ID (replace with your own logic)
     return Math.random().toString(36).substr(2, 9);

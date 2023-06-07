@@ -59,7 +59,7 @@ const AcademicRecord = () => {
 
   useEffect(() => {
     if (currentUser) {
-      const studentInfo = studentData[currentUser.id - 1]; // Assuming the id corresponds to the array index (id 1 -> index 0, id 2 -> index 1)
+      const studentInfo = studentData[currentUser.id]; // Assuming the id corresponds to the array index (id 1 -> index 0, id 2 -> index 1)
       setStudent(studentInfo);
     }
   }, [currentUser]);
@@ -72,9 +72,16 @@ const AcademicRecord = () => {
   };
 
   // Ensure that the student data has been fetched before trying to access it
-  if (!student) {
-    return <div>Loading...</div>;
-  }
+
+
+  const courses = [
+    { code: "CMPE101", name: "Intro to Computer Engineering", mark: "A" },
+    { code: "CMPE102", name: "Data Structures", mark: "B+" },
+    { code: "CMPE103", name: "Algorithms", mark: "A-" },
+    { code: "CMPE104", name: "Computer Networks", mark: "B" },
+    { code: "CMPE105", name: "Operating Systems", mark: "F" },
+
+  ]
 
   return (
     <div>
@@ -94,7 +101,7 @@ const AcademicRecord = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {student.courses.map((course, index) => (
+                  {courses.map((course, index) => (
                     <TableRow key={index}>
                       <TableCell>{course.code}</TableCell>
                       <TableCell>{course.name}</TableCell>

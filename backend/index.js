@@ -123,13 +123,14 @@ app.get('/courses/:api', async (req, res) => {
 })
 
 // add course
-app.post('/addCourse', async (req, res) => {
-  const { name, description, apiKey } = req.body
-  if (apiKey === apiKey) {
+app.post('/addCourse/:api', async (req, res) => {
+  const { name, instructor, periods } = req.body
+  if (req.query.api === apiKey) {
     const course = {
       id: uuidv4(),
       name,
-      description,
+      instructor,
+      periods
     }
     await db.data.courses.push(course)
     await db.write()
