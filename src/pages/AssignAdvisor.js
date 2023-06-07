@@ -15,13 +15,13 @@ import {
 import NavgationBar from "../components/NavigationBar";
 
 const studentData = [
-  { id: 1, name: "John Doe", advisor: "Advisor A" },
-  { id: 2, name: "Jane Smith", advisor: "Advisor B" },
-  { id: 3, name: "Mike Johnson", advisor: "Advisor C" },
+  { id: 1, name: "Berke Çelik", advisor: "Jhon Doe" },
+  { id: 2, name: "Buse Alasköz", advisor: "Doğu Arifler" },
+  { id: 3, name: "Mike Tyson", advisor: "Hakan Altınçay" },
   // Add more students as needed
 ];
 
-const advisorOptions = ["Advisor A", "Advisor B", "Advisor C", "Advisor D"];
+const advisorOptions = ["Doğu Arifler", "Hakan Altınçay", "Jhon Doe", "Bodur"];
 
 const AssignAdvisor = () => {
   const [students, setStudents] = useState(studentData);
