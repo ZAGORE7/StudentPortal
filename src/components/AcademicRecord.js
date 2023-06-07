@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "./UseContext";
 import {
   Container,
   Typography,
@@ -14,13 +15,10 @@ import {
 } from "@mui/material";
 
 const AcademicRecord = () => {
-  const markBackgroundColor = (mark) => {
-    if (mark === "F" || mark === "D" || mark === "D-") {
-      return "red";
-    }
-    return "transparent";
-  };
-  const student = [
+  const { currentUser } = useContext(UserContext);
+  const [student, setStudent] = useState(null);
+
+  const studentData = [
     {
       name: "John Doe",
       advisor: "Dr. Smith",
@@ -59,6 +57,30 @@ const AcademicRecord = () => {
     },
   ];
 
+  useEffect(() => {
+    if (currentUser) {
+      const studentInfo = studentData[currentUser.id]; // Assuming the id corresponds to the array index (id 1 -> index 0, id 2 -> index 1)
+      setStudent(studentInfo);
+    }
+  }, [currentUser]);
+
+  const markBackgroundColor = (mark) => {
+    if (mark === "F" || mark === "D" || mark === "D-") {
+      return "red";
+    }
+    return "transparent";
+  };
+
+  // Ensure that the student data has been fetched before trying to access it
+
+  const courses = [
+    { code: "CMPE101", name: "Intro to Computer Engineering", mark: "A" },
+    { code: "CMPE102", name: "Data Structures", mark: "B+" },
+    { code: "CMPE103", name: "Algorithms", mark: "A-" },
+    { code: "CMPE104", name: "Computer Networks", mark: "B" },
+    { code: "CMPE105", name: "Operating Systems", mark: "F" },
+  ];
+
   return (
     <div>
       <Container maxWidth="md">
@@ -77,7 +99,7 @@ const AcademicRecord = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {student.courses.map((course, index) => (
+                  {courses.map((course, index) => (
                     <TableRow key={index}>
                       <TableCell>{course.code}</TableCell>
                       <TableCell>{course.name}</TableCell>
