@@ -5,6 +5,7 @@ import Timetable from "../components/TimeTableComp";
 import ConfirmCourses from "./ConfirmCourses";
 import { Box } from "@mui/material";
 import StudentCourseTable from "../components/StudentCourseTable";
+import NavBarA from "../components/NavbarA";
 const courses = [
   {
     id: 1,
@@ -54,6 +55,7 @@ const studentData = [
 const AdvisorStudentView = ({ studentData }) => {
   return (
     <div>
+      <NavBarA />
       <Box sx={{ m: 10 }}>
         <AcademicRecord studentData={studentData} />
       </Box>
