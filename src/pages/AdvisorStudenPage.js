@@ -1,4 +1,4 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState, useContext, useMemo, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -18,40 +18,37 @@ import { styled } from "@mui/system";
 import { UserContext } from "../components/UseContext";
 import { useNavigate } from "react-router-dom";
 
-const studentData = [
-  {
-    studentId: 1,
-    studentName: "John",
-    studentSurname: "Doe",
-    department: "Computer Science",
-    email: "john.doe@example.com",
-  },
-  {
-    studentId: 2,
-    studentName: "Berke",
-    studentSurname: "Çelik",
-    department: "Computer Science",
-    email: "berke@example.com",
-  },
-  {
-    studentId: 3,
-    studentName: "Fatih",
-    studentSurname: "Altaylı",
-    department: "Computer Science",
-    email: "Fato@example.com",
-  },
-
-  //... other students
-];
+const apiKey="u8n2KZv8tMdsZTFH"
 
 const AdvisorStudentsPage = () => {
+
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [studentData, setstudentData] = useState({})
+
+  const getStudents = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/students/${apiKey}`)
+      const data = await response.json()
+      setstudentData(data)
+    } catch (e) {
+      setError(true)
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getStudents()
+  }, [])
+
   const advisorId = 1; // Replace with the correct advisorId
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleStudentClick = (studentId) => {
-    setCurrentUser({ ...currentUser, id: studentId });
-    navigate(`/student/${studentId}`);
+  const handleStudentClick = (id) => {
+    setCurrentUser({ ...currentUser, id: id });
+    localStorage.setItem("target_user", JSON.stringify(id));
+    navigate(`/student/${id}`);
   };
   const advisor = advisorData.find(
     (advisor) => advisor.advisorId === advisorId
@@ -61,16 +58,6 @@ const AdvisorStudentsPage = () => {
   const handleSearchChange = (event) => {
     setSearchTerm(String(event.target.value));
   };
-
-  const filteredStudents = useMemo(
-    () =>
-      studentData.filter((student) =>
-        `${student.studentName} ${student.studentSurname}`
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())
-      ),
-    [searchTerm, studentData]
-  );
 
   const StyledTableContainer = styled(TableContainer)({
     margin: "20px",
@@ -84,6 +71,23 @@ const AdvisorStudentsPage = () => {
     color: "darkblue",
     fontWeight: "bold",
   });
+
+  if (loading) {
+    return (
+      <div>
+        Loading...
+      </div>
+    )
+  }
+  
+  if (error) {
+    return (
+      <div>
+        Error...
+      </div>
+    )
+  }
+
 
   return (
     <div>
@@ -120,18 +124,18 @@ const AdvisorStudentsPage = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredStudents.map((student) => (
-                  <TableRow key={student.studentId}>
-                    <TableCell>{student.studentId}</TableCell>
+                {studentData.map((student) => (
+                  <TableRow key={student.id}>
+                    <TableCell>{student.id}</TableCell>
                     <TableCell>
                       <Link
-                        href={`/student/${student.studentId}`}
+                        href={`/student/${student.id}`}
                         onClick={(event) => {
                           event.preventDefault();
-                          handleStudentClick(student.studentId);
+                          handleStudentClick(student.id);
                         }}
                       >
-                        {student.studentName} {student.studentSurname}
+                        {student.name}
                       </Link>
                     </TableCell>
                     <TableCell>{student.email}</TableCell>

@@ -47,6 +47,9 @@ const NavTabs = ({ currentLocation }) => {
         <Link to="/student/profile" style={linkStyles("/student/profile")}>
           Academic Record Page
         </Link>
+        <Link to="/" style={linkStyles("/")}>
+          Logout
+        </Link>
       </Box>
     </Box>
   );

@@ -11,6 +11,8 @@ import {
 import { useContext } from "react";
 import { UserContext } from "../components/UseContext";
 
+const LoginApi = "http://localhost:8080/login"
+
 const LoginPage = () => {
   const { setCurrentUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
@@ -19,46 +21,27 @@ const LoginPage = () => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
-  const users = [
-    {
-      email: "berke@gmail.com",
-      password: "berke",
-      role: "student",
-      id: "1",
-    },
-    {
-      email: "advisor1@example.com",
-      password: "advisor1",
-      role: "advisor",
-    },
-    {
-      email: "student2@example.com",
-      password: "student2",
-      role: "student",
-      id: "2",
-    },
-    {
-      email: "advisor2@example.com",
-      password: "advisor2",
-      role: "advisor",
-      id: "101",
-    },
-    {
-      email: "admin@gmail.com",
-      password: "admin",
-      role: "admin",
-      id: "42",
-    },
 
-    // Add more users as needed
-  ];
-  const handleSubmit = (event) => {
+  
+  async function loginevent(emal, passwrd) {
+    const response = await fetch(LoginApi, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({email: emal, password: passwrd})
+    })
+    const data = await response.json()
+    console.log(data.role)
+    return data
+  }
+
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const user = users.find(
-      (user) => user.email === email && user.password === password
-    );
-
+    const user = await loginevent(email, password)
+    
     if (user) {
       setCurrentUser(user);
       if (user.role === "student") {
@@ -68,12 +51,14 @@ const LoginPage = () => {
       } else if (user.role === "admin") {
         navigate("/admin/courses");
       }
+      // save user to local storage
+      localStorage.setItem("user", JSON.stringify(user.id));
     } else {
       setError("Invalid email or password");
       setOpen(true);
     }
   };
-
+  
   const handleClose = () => {
     setOpen(false);
   };

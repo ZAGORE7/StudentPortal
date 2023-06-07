@@ -24,109 +24,15 @@ import {
 } from "@mui/material";
 import Navbar from "../components/Navbar";
 
-const mockCourses = [
-  {
-    id: 1,
-    code: "CMPE101",
-    name: "Logic Design",
-    instructor: "Mohammed Salamah",
-    periods: [
-      { day: "Monday", startTime: "08:30", endTime: "09:20" },
-      { day: "Monday", startTime: "09:30", endTime: "10:20" },
-      { day: "Wednesday", startTime: "08:30", endTime: "09:20" },
-      { day: "Wednesday", startTime: "09:30", endTime: "10:20" },
-      { day: "Friday", startTime: "08:30", endTime: "09:20" },
-      { day: "Friday", startTime: "09:30", endTime: "10:20" },
-    ],
-  },
-  {
-    id: 2,
-    code: "CMPE312",
-    name: "Software Engineering",
-    instructor: "Felix Babalola",
-    periods: [
-      { day: "Monday", startTime: "10:30", endTime: "11:20" },
-      { day: "Monday", startTime: "11:30", endTime: "12:20" },
-      { day: "Tuesday", startTime: "10:30", endTime: "11:20" },
-      { day: "Tuesday", startTime: "11:30", endTime: "12:20" },
-      { day: "Friday", startTime: "10:30", endTime: "11:20" },
-      { day: "Friday", startTime: "11:30", endTime: "12:20" },
-    ],
-  },
-  {
-    id: 3,
-    code: "CMPE344",
-    name: "Computer Networks",
-    instructor: "Doğu Arifler",
-    periods: [
-      { day: "Tuesday", startTime: "14:30", endTime: "15:20" },
-      { day: "Tuesday", startTime: "15:30", endTime: "16:20" },
-      { day: "Thursday", startTime: "14:30", endTime: "15:20" },
-      { day: "Thursday", startTime: "15:30", endTime: "16:20" },
-      { day: "Friday", startTime: "14:30", endTime: "15:20" },
-      { day: "Friday", startTime: "15:30", endTime: "16:20" },
-    ],
-  },
-  {
-    id: 4,
-    code: "CMPE301",
-    name: "Highend Embeded Systems",
-    instructor: "Mohammed Salamah",
-    periods: [
-      { day: "Tuesday", startTime: "16:30", endTime: "17:20" },
-      { day: "Tuesday", startTime: "17:30", endTime: "18:20" },
-      { day: "Thursday", startTime: "16:30", endTime: "17:20" },
-      { day: "Thursday", startTime: "17:30", endTime: "18:20" },
-      { day: "Friday", startTime: "16:30", endTime: "17:20" },
-      { day: "Friday", startTime: "17:30", endTime: "18:20" },
-    ],
-  },
-  {
-    id: 5,
-    code: "CMPE342",
-    name: "Client/Server Programming",
-    instructor: "Yıltan Bitirim",
-    periods: [
-      { day: "Tuesday", startTime: "16:30", endTime: "17:20" },
-      { day: "Tuesday", startTime: "17:30", endTime: "18:20" },
-      { day: "Wednesday", startTime: "08:30", endTime: "09:20" },
-      { day: "Wednesday", startTime: "09:30", endTime: "10:20" },
-      { day: "Friday", startTime: "12:30", endTime: "13:20" },
-      { day: "Friday", startTime: "13:30", endTime: "14:20" },
-    ],
-  },
-  {
-    id: 6,
-    code: "CMPE231",
-    name: "Object Oriented Programming",
-    instructor: "Hakan Altınçay",
-    periods: [
-      { day: "Monday", startTime: "16:30", endTime: "17:20" },
-      { day: "Monday", startTime: "17:30", endTime: "18:20" },
-      { day: "Thursday", startTime: "10:30", endTime: "11:20" },
-      { day: "Thursday", startTime: "11:30", endTime: "12:20" },
-      { day: "Friday", startTime: "18:30", endTime: "19:20" },
-      { day: "Friday", startTime: "19:30", endTime: "20:20" },
-    ],
-  },
-  {
-    id: 7,
-    code: "SCIE223",
-    name: "Patterns of Drug Use",
-    instructor: "Duygu Uzun",
-    periods: [
-      { day: "Tuesday", startTime: "08:30", endTime: "09:20" },
-      { day: "Tuesday", startTime: "09:30", endTime: "10:20" },
-      { day: "Thursday", startTime: "14:30", endTime: "15:20" },
-      { day: "Thursday", startTime: "15:30", endTime: "16:20" },
-      { day: "Friday", startTime: "12:30", endTime: "13:20" },
-      { day: "Friday", startTime: "13:30", endTime: "14:20" },
-    ],
-  },
-];
+const apiKey="u8n2KZv8tMdsZTFH"
+const stdid = JSON.parse(localStorage.getItem("user"));
 
-function CourseRegistrationPage() {
-  const { selectedCourses, setSelectedCourses } = useContext(CourseContext);
+const CourseRegistrationPage = () => {
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [mockCourses, setMockCourses] = useState({})
+
+  const {selectedCourses, setSelectedCourses } = useContext(CourseContext);
   const [warningMessage, setWarningMessage] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [clashingCourse, setClashingCourse] = useState(null);
@@ -151,8 +57,9 @@ function CourseRegistrationPage() {
       )
     );
   };
-  const handleConfirmClashingCourse = () => {
+  const handleConfirmClashingCourse = async () => {
     setSelectedCourses([...selectedCourses, clashingCourse]);
+    await fetch(`http://localhost:8080/enroll/${apiKey}/${stdid}/${clashingCourse.id}`)
     setDialogOpen(false);
     setClashingCourse(null);
   };
@@ -162,7 +69,7 @@ function CourseRegistrationPage() {
     );
   };
 
-  const addCourse = (course) => {
+  const addCourse = async (course) => {
     if (isCourseAlreadySelected(course)) {
       setCourseExistsDialogOpen(true);
       return;
@@ -177,41 +84,63 @@ function CourseRegistrationPage() {
       setDialogOpen(true);
     } else {
       setSelectedCourses([...selectedCourses, course]);
+      await fetch(`http://localhost:8080/enroll/${apiKey}/${stdid}/${course.id}`)
     }
   };
-  const removeCourse = (courseId) => {
+  const removeCourse = async (courseId) => {
     setSelectedCourses(
       selectedCourses.filter((course) => course.id !== courseId)
     );
+    await fetch(`http://localhost:8080/unenroll/${apiKey}/${stdid}/${courseId}`)
   };
 
-  // Save courses to local storage
-  useEffect(() => {
-    if (selectedCourses.length > 0) {
-      localStorage.setItem("selectedCourses", JSON.stringify(selectedCourses)
-      );
+    // get selected courses from '/enrolled/:api/:uid'
+    const getSelectedCourses = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/enrolled/${apiKey}/${stdid}`)
+        const data = await response.json()
+        console.log(data)
+        setSelectedCourses(data)
+      } catch (e) {
+        setError(true)
+      }
+      setLoading(false)
     }
-  }, [selectedCourses]);
 
-  // Remove removed courses from local storage
-  useEffect(() => {
-    const courses = JSON.parse(localStorage.getItem("selectedCourses"));
-    if (courses) {
-      const newCourses = courses.filter((course) =>
-        selectedCourses.some((selectedCourse) => selectedCourse.id === course.id)
-      );
-      localStorage.setItem("selectedCourses", JSON.stringify(newCourses));
+  const getCourses = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/courses/${apiKey}`)
+      const data = await response.json()
+      setMockCourses(data)
+    } catch (e) {
+      setError(true)
     }
-  }, [selectedCourses]);
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getCourses()
+    getSelectedCourses()
+  }, [])
   
-  // Load courses from local storage
-  useEffect(() => {
-    const courses = JSON.parse(localStorage.getItem("selectedCourses"));
-    if (courses) {
-      setSelectedCourses(courses);
-    }
-  }, []);
-
+  if (loading) {
+    return (
+      <div>
+        <Navbar />
+        Loading...
+      </div>
+    )
+  }
+  
+  if (error) {
+    return (
+      <div>
+        <Navbar />
+        Error...
+      </div>
+    )
+  }
+        
   return (
     <div>
       <Navbar />
@@ -250,16 +179,6 @@ function CourseRegistrationPage() {
                   ))}
                 </CardContent>
                 <CardActions>
-                  {isCourseAlreadySelected(course) ? ( 
-                    <Button
-                      startIcon={<Delete />}
-                      color="error"
-                      variant="outlined"
-                      onClick={() => removeCourse(course.id)}
-                    >
-                      Remove
-                    </Button>
-                  ) : (
                     <Button
                       startIcon={<Add />}
                       color="primary"
@@ -268,7 +187,6 @@ function CourseRegistrationPage() {
                     >
                       Add
                     </Button>
-                  )}
                 </CardActions>
               </Card>
             </Grid>

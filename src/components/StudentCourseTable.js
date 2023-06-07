@@ -6,24 +6,71 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React from "react";
+import React, { useState, useContext, useMemo, useEffect } from "react";
+
+
+
+const apiKey="u8n2KZv8tMdsZTFH"
+const target_user = JSON.parse(localStorage.getItem("target_user"));
 
 const StudentCourseTable = () => {
-  const studentCourses = [
-    { id: 1, courseCode: "CMPE101", status: "Pending" },
-    { id: 2, courseCode: "PHYS101", status: "Confirmed" },
-    { id: 3, courseCode: "CHEM101", status: "Pending" },
-    { id: 4, courseCode: "MATH101", status: "Confirmed" },
-  ];
 
-  const confirmCourse = (id) => {
-    // Write your confirmation logic here
-    console.log(`Confirming course with id: ${id}`);
-  };
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [studentCourses, setStudentCourses] = useState({})
 
-  const removeCourse = (id) => {
-    // Write your removal logic here
-    console.log(`Removing course with id: ${id}`);
+  // Get studentcourses from /enrolled/:api/:uid api
+  const getStudentCourses = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8080/enrolled/${apiKey}/${id}`)
+      const data = await response.json()
+      setStudentCourses(data)
+    } catch (e) {
+      setError(true)
+    }
+    setLoading(false)
+  }
+    
+
+  useEffect(() => {
+    getStudentCourses(target_user)
+  }, [])
+
+
+  if (loading) {
+    return (
+      <div>
+        Loading...
+      </div>
+    )
+  }
+  
+  if (error) {
+    return (
+      <div>
+        Error...
+      </div>
+    )
+  }
+
+
+  // confirm course with /enroll/:api/:id/:status 
+  const confirmCourse = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8080/enrollstat/${apiKey}/${id}/confirmed`)
+    } catch (e) {
+      setError(true)
+    }
+    setLoading(false)
+  }
+
+  const removeCourse = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8080/unenroll/${apiKey}/${target_user}/${id}`)
+    } catch (e) {
+      setError(true)
+    }
+    setLoading(false)
   };
 
   return (
@@ -38,14 +85,14 @@ const StudentCourseTable = () => {
       <TableBody>
         {studentCourses.map((course) => (
           <TableRow key={course.id}>
-            <TableCell>{course.courseCode}</TableCell>
+            <TableCell>{course.code}</TableCell>
             <TableCell>{course.status}</TableCell>
             <TableCell>
-              {course.status === "Pending" && (
+              {course.status === "pending" && (
                 <Button
                   size="small"
                   color="primary"
-                  onClick={() => confirmCourse(course.id)}
+                  onClick={() => confirmCourse(course.endorllmentId)}
                 >
                   Confirm
                 </Button>
@@ -53,7 +100,7 @@ const StudentCourseTable = () => {
               <Button
                 size="small"
                 color="secondary"
-                onClick={() => removeCourse(course.id)}
+                onClick={() => removeCourse(course.endorllmentId)}
               >
                 Remove
               </Button>
