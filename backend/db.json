@@ -26,10 +26,10 @@
     },
     {
       "id": "ccdf5786-0084-4d47-89ca-7327a254e585",
-      "name": "Advisor3",
+      "name": "Admin",
       "department": "Computer Engineering",
-      "email": "advisor2@example.com",
-      "password": "advisor2",
+      "email": "admin@example.com",
+      "password": "admin",
       "role": "admin"
     }
   ],
@@ -354,6 +354,12 @@
       "id": "dca4262b-dc7f-4a7c-b678-11e9a00117eb",
       "userId": "null",
       "courseId": "4",
+      "status": "pending"
+    },
+    {
+      "id": "0af8c929-0377-4e81-be78-a614e1dd7f67",
+      "userId": "ccdf5896-0084-4d47-89ca-7327a254e585",
+      "courseId": "7",
       "status": "pending"
     }
   ]
